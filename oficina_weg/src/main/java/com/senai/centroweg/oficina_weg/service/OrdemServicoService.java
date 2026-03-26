@@ -35,4 +35,48 @@ public class OrdemServicoService {
         ordemServico.setStatus(StatusOrdemServico.ABERTA);
         return repository.save(ordemServico);
     }
+
+
+    public OrdemServico executarOS(Long osId, Long alunoId) {
+        OrdemServico os = repository.findById(osId)
+                .orElseThrow(() -> new RuntimeException("OS não encontrada."));
+        if (!os.getStatus().equals(StatusOrdemServico.ABERTA)) {
+            throw new RuntimeException("OS não está disponível para execução.");
+        }
+
+
+
+
+        boolean alunoEscalado = os.getAlunosResponsaveis()
+                .stream()
+                .anyMatch(aluno -> aluno.getId().equals(alunoId));
+
+        if (!alunoEscalado) {
+            throw new RuntimeException("Aluno não está escalado para esta OS.");
+        }
+
+        os.setStatus(StatusOrdemServico.EXECUTANDO);
+        return repository.save(os);
+    }
+
+    public OrdemServico aprovarOS(Long osId, Long professorId) {
+        OrdemServico os = repository.findById(osId)
+                .orElseThrow(() -> new RuntimeException("OS não encontrada."));
+
+        if (!os.getIdProfessorResponsavel().equals(professorId)) {
+            throw new RuntimeException("Somente o professor que abriu a OS pode encerrá-la.");
+
+        }
+
+        if (!os.getStatus().equals(StatusOrdemServico.EXECUTANDO)) {
+
+            throw new RuntimeException("OS não está em execução para ser aprovada.");
+        }
+
+        os.setStatus(StatusOrdemServico.CONCLUIDA);
+
+        return repository.save(os);
+    }
+
+
 }
