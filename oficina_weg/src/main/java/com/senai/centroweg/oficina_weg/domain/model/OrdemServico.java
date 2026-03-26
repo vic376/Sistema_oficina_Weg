@@ -33,7 +33,7 @@ public class OrdemServico {
     private String laudoTecnico;
 
     @Column(nullable = false)
-    private Long IdProfessorResponsavel;
+    private Long idProfessorResponsavel;
 
     @ManyToMany
     @JoinTable(name = "os_alunos",
@@ -44,5 +44,6 @@ public class OrdemServico {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusOrdemServico status;
+
 
 }
