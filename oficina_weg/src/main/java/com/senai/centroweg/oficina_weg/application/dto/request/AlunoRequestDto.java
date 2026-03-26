@@ -5,4 +5,5 @@ public record AlunoRequestDto(
      Long turmaId
 
 ) {
+
 }
