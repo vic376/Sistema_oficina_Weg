@@ -2,9 +2,11 @@ package com.senai.centroweg.oficina_weg.service;
 
 import com.senai.centroweg.oficina_weg.domain.interfaces.IProfessorRepository;
 import com.senai.centroweg.oficina_weg.domain.model.Professor;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ProfessorService {
 
     private final IProfessorRepository repositoy;

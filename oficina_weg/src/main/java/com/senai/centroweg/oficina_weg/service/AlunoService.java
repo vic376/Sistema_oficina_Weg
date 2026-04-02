@@ -3,11 +3,13 @@ package com.senai.centroweg.oficina_weg.service;
 import com.senai.centroweg.oficina_weg.domain.interfaces.IAlunoRepository;
 import com.senai.centroweg.oficina_weg.domain.interfaces.IOrdemServicoRepository;
 import com.senai.centroweg.oficina_weg.domain.model.Aluno;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AlunoService {
 
     private final IAlunoRepository repositoy;

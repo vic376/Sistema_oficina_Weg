@@ -17,9 +17,9 @@ import org.hibernate.annotations.ManyToAny;
 public class Aluno extends Usuario {
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(name = "turma_id", nullable = false)
     private Turma turma;
 
-    //turmaid ou chav estrangeira
+
 
 }

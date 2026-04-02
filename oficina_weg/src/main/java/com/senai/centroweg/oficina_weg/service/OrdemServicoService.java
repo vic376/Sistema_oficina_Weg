@@ -36,16 +36,12 @@ public class OrdemServicoService {
         return repository.save(ordemServico);
     }
 
-
     public OrdemServico executarOS(Long osId, Long alunoId) {
         OrdemServico os = repository.findById(osId)
                 .orElseThrow(() -> new RuntimeException("OS não encontrada."));
         if (!os.getStatus().equals(StatusOrdemServico.ABERTA)) {
             throw new RuntimeException("OS não está disponível para execução.");
         }
-
-
-
 
         boolean alunoEscalado = os.getAlunosResponsaveis()
                 .stream()
@@ -68,7 +64,7 @@ public class OrdemServicoService {
 
         }
 
-        if (!os.getStatus().equals(StatusOrdemServico.EXECUTANDO)) {
+        if (!os.getStatus().equals(StatusOrdemServico.AGUARDANDO_APROVACAO)) {
 
             throw new RuntimeException("OS não está em execução para ser aprovada.");
         }

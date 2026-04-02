@@ -3,10 +3,12 @@ package com.senai.centroweg.oficina_weg.service;
 import com.senai.centroweg.oficina_weg.domain.interfaces.IOrdemServicoRepository;
 import com.senai.centroweg.oficina_weg.domain.interfaces.ITurmaRepository;
 import com.senai.centroweg.oficina_weg.domain.model.Turma;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TurmaService {
 
     private final ITurmaRepository repository;

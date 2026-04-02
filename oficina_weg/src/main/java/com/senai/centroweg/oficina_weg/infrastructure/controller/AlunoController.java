@@ -29,10 +29,10 @@ public class AlunoController {
 
     @PostMapping
     public ResponseEntity<AlunoResponseDto> criarAluno(@RequestBody AlunoRequestDto dto) {
-        Turma turma = turmaService.buscarPorId(dto.getTurmaId())
+        Turma turma = turmaService.buscarPorId(dto.turmaId())
                 .orElseThrow(() -> new RuntimeException("Turma não encontrada."));
         Aluno aluno = alunoMapper.toEntity(dto, turma);
-        return ResponseEntity.status(HttpStatus.CREATED).body(alunoMapper.toDTO(alunoService.cadastrarAluno(aluno)));
+        return ResponseEntity.status(HttpStatus.CREATED).body(alunoMapper.toDTO(alunoService.criarAluno(aluno)));
     }
 
     @GetMapping
