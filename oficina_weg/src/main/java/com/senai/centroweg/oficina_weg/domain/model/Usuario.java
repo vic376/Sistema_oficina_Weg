@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Usuario {
+public abstract class Usuario {//deu erro, essa foi a sugestão do intelliJ pra resolver, e eu aceitei
 
     @Id
     @GeneratedValue

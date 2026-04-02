@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,5 +25,5 @@ public class Turma {
     private String nome;
 
     @OneToMany(mappedBy = "turma")
-    private List<Aluno> alunos;
+    private List<Aluno> alunos = new ArrayList<>();
 }

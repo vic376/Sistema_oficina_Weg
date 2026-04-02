@@ -28,7 +28,7 @@ public class ProfessorController {
     private ProfessorMapper professorMapper;
 
     @PostMapping
-    public ResponseEntity<ProfessorResponseDto> criarTurma(@RequestBody ProfessorRequestDto dto) {
+    public ResponseEntity<ProfessorResponseDto> criarProfessores(@RequestBody ProfessorRequestDto dto) {
         Professor professor = professorMapper.toEntity(dto);
         Professor salva = professorService.criarProfessor(professor);
         return ResponseEntity.status(HttpStatus.CREATED).body(professorMapper.toDTO(salva));
