@@ -42,6 +42,7 @@ public class OrdemServicoService {
         if (!os.getStatus().equals(StatusOrdemServico.ABERTA)) {
             throw new RuntimeException("OS não está disponível para execução.");
         }
+        /// //////////aq ta certo
 
         boolean alunoEscalado = os.getAlunosResponsaveis()
                 .stream()
@@ -54,19 +55,20 @@ public class OrdemServicoService {
         os.setStatus(StatusOrdemServico.EXECUTANDO);
         return repository.save(os);
     }
+    /// ////////ta aq
 
     public OrdemServico aprovarOS(Long osId, Long professorId) {
         OrdemServico os = repository.findById(osId)
                 .orElseThrow(() -> new RuntimeException("OS não encontrada."));
 
         if (!os.getIdProfessorResponsavel().equals(professorId)) {
-            throw new RuntimeException("Somente o professor que abriu a OS pode encerrá-la.");
+            throw new RuntimeException("Somente o professor que abriu a OS pode finaliza-la.");
 
         }
 
         if (!os.getStatus().equals(StatusOrdemServico.AGUARDANDO_APROVACAO)) {
 
-            throw new RuntimeException("OS não está em execução para ser aprovada.");
+            throw new RuntimeException("OS não está em execução");
         }
 
         os.setStatus(StatusOrdemServico.CONCLUIDA);
@@ -75,4 +77,16 @@ public class OrdemServicoService {
     }
 
 
+    public OrdemServico concluirExecucao(Long osId, Long alunoId) {
+        OrdemServico os = repository.findById(osId)
+                .orElseThrow(() -> new RuntimeException("Não foi encontrada!"));
+
+        if (!os.getStatus().equals(StatusOrdemServico.EXECUTANDO)){
+            throw new RuntimeException("OS não está sendo executada.");
+
+        }
+
+        os.setStatus(StatusOrdemServico.AGUARDANDO_APROVACAO);
+        return repository.save(os);
+    }
 }
